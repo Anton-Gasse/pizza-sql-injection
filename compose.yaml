@@ -1,0 +1,19 @@
+# docker compose configuration containing the following container:
+# - postgresql database
+
+services:
+  # database
+  database:
+    container_name: iug-database
+    platform: linux/amd64
+    image: postgres:17.0-alpine
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - '5432:5432'
+    restart: always
