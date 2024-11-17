@@ -1,8 +1,4 @@
-# docker compose configuration containing the following container:
-# - postgresql database
-
 services:
-  # database
   database:
     container_name: iug-database
     platform: linux/amd64
@@ -16,4 +12,17 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - '5432:5432'
+    restart: always
+
+  backend:
+    build:
+      context: .
+    container_name: iug-backend
+    platform: linux/amd64
+    environment:
+      - IP=$IP
+    ports:
+      - "5000:5000" 
+    depends_on:
+      - database  
     restart: always
