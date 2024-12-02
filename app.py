@@ -6,29 +6,34 @@ import psycopg2
 app = flask.Flask(__name__)
 
 database = "postgres"
-user = "backend"
+coupon_user = "coupon_user"
+scoreboard_user = "scoreboard_user"
 password = "password"
 host: str | None = os.getenv("IP")
 port = "5432"
 
-conn = psycopg2.connect(
-    dbname=database, user=user, password=password, host=host, port=port
+coupon_conn = psycopg2.connect(
+    dbname=database, user=coupon_user, password=password, host=host, port=port
+)
+
+scoreboard_conn = psycopg2.connect(
+    dbname=database, user=scoreboard_user, password=password, host=host, port=port
 )
 
 
 def get_coupon_discount(coupon_code: str) -> list | None:
     query = f"SELECT amount FROM Coupon WHERE code = '{coupon_code}';"
     try:
-        with conn.cursor() as cursor:
+        with coupon_conn.cursor() as cursor:
             cursor.execute(query)
             if cursor.description:
                 result = cursor.fetchall()
-                conn.commit()
+                coupon_conn.commit()
                 return result if result else None
-            conn.commit()
+            coupon_conn.commit()
     except Exception as e:
         print(f"An error occurred: {e}")
-        conn.rollback()
+        coupon_conn.rollback()
         return None
 
 
@@ -67,13 +72,13 @@ def add_scoreboard() -> flask.Response | tuple[flask.Response, Literal[200, 400]
     query = f"INSERT INTO Scoreboard(username) VALUES ('{name}');"
 
     try:
-        with conn.cursor() as cursor:
+        with scoreboard_conn.cursor() as cursor:
             cursor.execute(query)
-            conn.commit()
+            scoreboard_conn.commit()
             return flask.jsonify({"message": "Name added successfully!"}), 200
 
     except Exception as e:
-        conn.rollback()
+        scoreboard_conn.rollback()
         return flask.jsonify({"message": "Name already in leaderboard"}), 400
 
 
@@ -85,7 +90,7 @@ def show_scoreboard() -> str:
 
     query = f"SELECT username from Scoreboard;"
     try:
-        with conn.cursor() as cursor:
+        with scoreboard_conn.cursor() as cursor:
             cursor.execute(query)
 
             scoreboard_list = cursor.fetchall()
@@ -93,7 +98,7 @@ def show_scoreboard() -> str:
 
     except Exception as e:
         print(f"An error occurred: {e}")
-        conn.commit()
+        scoreboard_conn.commit()
 
     return flask.render_template("scoreboard.html", scoreboard=enumerate(name_list))
 
