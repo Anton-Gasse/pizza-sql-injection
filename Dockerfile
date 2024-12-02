@@ -8,6 +8,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /app/
 
-EXPOSE 5000
+EXPOSE 80
 
-CMD ["python3", "app.py"]
+CMD python3 -m gunicorn -w 16 -b 0.0.0.0:80 app:app

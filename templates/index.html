@@ -25,6 +25,7 @@
         }
         .form-group {
             margin-bottom: 15px;
+            margin-right: 15px;
         }
         label {
             display: block;
@@ -90,6 +91,7 @@
     </style>
     <script>
         let currentDiscount = [[0]];
+        let currenctCoupon = null;
 
         function checkCoupon() {
             const couponInput = document.getElementById('coupon').value;
@@ -106,8 +108,11 @@
                             currentDiscount = data.percent;
 
                             resultElement.textContent = `Discount: ${data.percent}%`;
+                            currenctCoupon = couponInput;
+
                         } else {
                             currentDiscount = [[0]];
+                            currenctCoupon = null;
                             resultElement.textContent = "Invalid coupon code.";
                         }
                     })
@@ -117,40 +122,48 @@
             }
         }
 
-        function handleFormSubmit(event) {
+        async function handleFormSubmit(event) {
 
             event.preventDefault();
 
             const nameInput = document.getElementById('name').value;
 
-            if (currentDiscount[0][0] === 100) {
-                alert("Success! Your order is free!");
+            if (!currenctCoupon) {
+                alert("Try again, the discount is not 100%.");
+                return;
+            }
 
-                fetch('/scoreboard', {
+            try {
+                const couponResponse = await fetch(`/check_coupon/${currenctCoupon}`);
+                const couponData = await couponResponse.json();
+
+                if (couponData.percent[0][0] !== 100) {
+                    alert("Try again, the discount is not 100%.");
+                    return;
+                }
+
+                // Only proceed if the coupon gives a 100% discount
+                const scoreboardResponse = await fetch('/scoreboard', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ name: nameInput })
-                })
-                .then(response => response.json())
-                .then(data => {
-
-                    if (data.message) {
-                        console.log(data.message);
-
-                    } else {
-                        alert("Error updating the server.");
-                    }
-                })
-                .catch(error => {
-                    console.error('Error adding to scoreboard:', error);
+                    body: JSON.stringify({ name: nameInput , coupon: currenctCoupon}),
                 });
 
-            } else {
-                alert("Try again, the discount is not 100%.");
+                const scoreboardData = await scoreboardResponse.json();
+
+                if (scoreboardData.message) {
+                    alert("Success! Your order is free!");
+                } else {
+                    alert("Error updating the server.");
+                }
+            } catch (error) {
+                console.error('Error processing form:', error);
+                alert("An error occurred. Please try again later.");
             }
         }
+
     </script>
 </head>
 <body>

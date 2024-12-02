@@ -1,7 +1,11 @@
 -- create coupon table
 CREATE TABLE IF NOT EXISTS Coupon (
-    code VARCHAR(36) NOT NULL,
+    code VARCHAR(36) PRIMARY KEY,
     amount INT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Scoreboard (
+    username VARCHAR(64) PRIMARY KEY
 );
 
 -- insert coupons
@@ -14,3 +18,5 @@ CREATE USER backend WITH PASSWORD 'password';
 GRANT CONNECT ON DATABASE postgres TO backend;
 GRANT USAGE ON SCHEMA public TO backend;
 GRANT SELECT ON Coupon TO backend;
+GRANT INSERT ON Scoreboard TO backend;
+GRANT SELECT ON Scoreboard To backend;
