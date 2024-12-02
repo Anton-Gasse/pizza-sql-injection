@@ -20,7 +20,7 @@ services:
     container_name: iug-backend
     platform: linux/amd64
     environment:
-      - IP=$IP
+      - IP=iug-database
     ports:
       - "80:80" 
     depends_on:
