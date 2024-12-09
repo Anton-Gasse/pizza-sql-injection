@@ -8,7 +8,7 @@ app = flask.Flask(__name__)
 database = "postgres"
 coupon_user = "coupon_user"
 scoreboard_user = "scoreboard_user"
-password = "password"
+password = os.getenv("POSTGRES_PASSWORD")
 host: str | None = os.getenv("IP")
 port = "5432"
 

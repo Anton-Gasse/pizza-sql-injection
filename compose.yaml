@@ -21,6 +21,7 @@ services:
     platform: linux/amd64
     environment:
       - IP=iug-database
+      - POSTGRES_PASSWORD=password
     ports:
       - "80:80" 
     depends_on:
