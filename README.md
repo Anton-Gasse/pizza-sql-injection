@@ -23,16 +23,42 @@ Your goal is to find and exploit an SQL Injection vulnerability to reveal the 10
 ## 🛠️ Getting started
 
 ### ⚡ Quick start
-1. Clone the repo
-2. docker compose up
+1. Clone the repo via:
+```sh
+git clone git@github.com:Anton-Gasse/pizza-sql-injection.git
+```
+2. Run the docker container via:
+```sh
+docker compose up
+```
 
 ### 🧑‍💻 Dev Setup
-1. Clone the repo
-2. Install the requirements via "pip install -r requirements.txt"
-3. Start a Postgres Docker Container via: "docker run -d --name my_postgres_container -e POSTGRES_USER=myuser -e POSTGRES_PASSWORD=mypassword -e POSTGRES_DB=postgres -p 5432:5432 postgres"
-4. Set the Environment Variable IP & POSTGRES_PASSWORD "export IP=<myip>" and "export POSTGRES_PASSWORD = <mypassword>"
-5.Load the [init.sql](./init.sql) into the database
-5. Start the server via "python3 app.py"
+1. Clone the repo via:
+```sh
+git clone git@github.com:Anton-Gasse/pizza-sql-injection.git
+```
+2. Install the requirements via:
+```sh
+pip install -r requirements.txt"
+```
+3. Start a Postgres Docker Container via:
+```sh
+docker run -d --name my_postgres_container \
+  -e POSTGRES_USER=<myuser> \
+  -e POSTGRES_PASSWORD=<mypassword> \
+  -e POSTGRES_DB=postgres \
+  -v ./init.sql:/docker-entrypoint-initdb.d/init.sql \
+  -p 5432:5432 postgres
+
+```
+4. Set the Environment Variable IP & POSTGRES_PASSWORD via:
+```sh
+export IP=<myip> && export POSTGRES_PASSWORD=<mypassword>
+```
+5. Start the server via:
+```sh
+python3 app.py"
+```
 
 ## 📡 Endpoints
 
