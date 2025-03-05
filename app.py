@@ -41,6 +41,18 @@ def get_coupon_discount(coupon_code: str) -> list | None:
 def hello_world():
     return flask.render_template("index.html")
 
+@app.route("/info")
+def info():
+    return flask.render_template("info.html")
+
+@app.route("/quiz")
+def quiz():
+    return flask.render_template("quiz.html")
+
+@app.route("/injection")
+def injection():
+    return flask.render_template("injection.html")
+
 
 @app.route("/check_coupon/<id>")
 def check_coupon(id) -> flask.Response:
@@ -105,4 +117,4 @@ def show_scoreboard() -> str:
 
 if __name__ == "__main__":
 
-    app.run("0.0.0.0", 80, debug=True)
+    app.run("0.0.0.0", 5000, debug=True)
