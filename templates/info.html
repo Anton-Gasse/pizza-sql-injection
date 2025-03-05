@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacking Information</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font: 1em/1.6 sans-serif;
+            font-size: 100%;
             background-color: #f7f7f7;
-            text-align: center;
         }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2;
+        }
+
         #content {
             margin-top: 20px;
             padding: 20px;
@@ -21,44 +29,239 @@
             margin-right: auto;
             text-align: left;
         }
-        h2 {
-            color: #007bff;
+
+        .source-quote {
+            display: block;
+            font-weight: 300;
+            font-size: 0.8em;
+            margin-top: 0.5em;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
+
+        details {
+            padding-top: 50px;
         }
-        li {
-            margin: 5px 0;
+
+        summary {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        ol.bibliography {
+            counter-reset: list;
+        }
+
+        ol.bibliography>li {
+            list-style: none;
+            position: relative;
+        }
+
+        ol.bibliography>li:before {
+            content: "[" counter(list) "]\2003";
+            counter-increment: list;
+            left: -40px;
+            padding-right: 10px;
+            position: absolute;
+            text-align: right;
+            width: 40px;
+        }
+
+        li+li {
+            margin-top: 10px;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bib-link,
+        a.bib-link:link,
+        a.bib-link:visited,
+        a.bib-link:hover,
+        a.bib-link:active,
+        .bib-reference,
+        .bib-reference:link,
+        .bib-reference:visited,
+        .bib-reference:hover,
+        .bib-reference:active {
+            text-decoration: none;
+            color: inherit;
         }
     </style>
 </head>
+
 <body>
     <div id="content">
-        
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+        <h1>Grundlagen</h1>
+        <h2>Definition</h2>
+        <blockquote>
+            "The essence of hacking is finding unintended or overlooked uses for the laws and properties of a given
+            situation and then applying them in new and inventive ways to solve a problem - whatever it may be."
+            <span class="source-quote">(Erickson, 2008, S. 1)<sup>[1]</sup></span>
+        </blockquote>
 
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
+        <h2>Arten von Hackern</h2>
+        <ol>
+            <li><b>Black-Hats/Cracker:</b> Hacker, die ohne Erlaubnis für ihre eigene Bereicherung illgal hacken.
+                <sup>[2]</sup>
+            </li>
+            <li><b>White-Hats:</b> Hacker, die mit Erlaubnis hacken, um Schwachstellen zu finden und Angriffe abzuwehren
+                bzw. die Sicherheit von Systemen zu verbessern. <sup>[2]</sup> <sup>[3]</sup></li>
+            <li><b>Grey-Hats:</b> Hacker, die zwar ohne Erlaubnis aber aus ethischen Gründen hacken. <sup>[2]</sup></li>
+            <li><b>Hacktivisten:</b> Hacker, die aus politischer Motivation hacken, um Aufmerksamkeit zu erlangen.
+                <sup>[3]</sup>
+            </li>
+            <li><b>State-sponsored Hacker:</b> Hacker, die im Auftrag von Staaten oder Regierungen hacken.
+                <sup>[3]</sup>
+            </li>
+            <li><b>Script-Kiddies:</b> Kriminelle, die nicht über die notwendigen Kenntnisse verfügen und lediglich die
+                Werkzeuge von qualifizierten Hackern benutzen. <sup>[3]</sup></li>
+        </ol>
 
-Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
+        <h2>Angriffsformen</h2>
+        <p>Angriffe lassen sich nach ihrem Zweck unterteilen:</p>
+        <ul>
+            <li>Angriffe auf die <b>Vertraulichkeit:</b> Erlangen von Zugang zu vertraulichen Informationen</li>
+            <li>Angriffe auf die <b>Integrität:</b> Veränderung von Daten und Softwaresystemen</li>
+            <li>Angriffe auf die <b>Verfügbarkeit:</b> "Störung des Betriebes von Informationssystemen [...]" (BSI,
+                2022, S. 29)</li>
+        </ul>
+        <sup>[4]</sup>
 
-Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.   
+        <h1>Funktionsweise</h1>
 
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.   
+        <h2>Angriffsphasen</h2>
+        <p>Ein Angriff lässt sich in drei Phasen unterteilen:</p>
+        <ol>
+            <li><b>Vulnerability:</b> Finden einer Schwachstelle in Softwaresystemen oder einer Organisation</li>
+            <li><b>Exploit:</b> Ausnutzen der gefundenen Schwachstelle</li>
+            <li><b>Payload:</b> Ausführen von Schadprogrammen oder Zugriff und Download von Daten</li>
+        </ol>
+        <sup>[5]</sup>
 
-At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.   
+        <h2>Angriffsmethoden</h2>
 
-Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus.   
+        <h3>Physische Angrifffe</h3>
+        <p>Bei physischen Angriffen verschaffen sich Angreifer physischen Zugang zu der Hardware und den Gebäuden des
+            Zieles. Dies ermöglicht zum Einen die Zerstörung oder den Diebstahl der Hardware.<sup>[6]</sup>
+            Zum Anderen aber auch "dumpster jumping". Dabei wird der Müll nach vertraulichen Informationen wie
+            Passwörtern durchsucht.<sup>[7]</sup></p>
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+        <h3>Social Engineering</h3>
+        <p>Beim Social Engineering wird der Mensch als Schwachstelle ausgenutzt. Dabei nutzen Angreifer menschliche
+            Eigenschaften, wie Vertrauen, Neugier, Angst oder Gier aus, um einen Nutzer dazu zu bewegen eine bestimmte
+            Aktion auszuführen oder Informationen preiszugeben. Oft wird ein zusätzlicher Druck aufgebaut und zum
+            Beispiel sehr knappe Fristen gesetzt. All dies zielt auf die psychologische Beeinflussung der Nutzer ab,
+            sodass diesen erschwert wird genau über die Nachricht nachzudenken. Social Engineering kann per Telefon,
+            E-Mail, oder auch in Person durchgeführt werden.</p>
+        <p>Die bekannteste Form von Social Engineering ist Phishing. Dabei wird ein Nutzer in einer E-Mail dazu
+            verleitet eine Webseite zu öffnen (und dort Informationen, wie Zugangsdaten einzugeben) oder einen Anhang zu
+            öffnen. Beim Spear-Phishing handelt es sich um gezielte Phishing-Angriffen, wo individuelle Informationen in
+            die Nachricht eingebaut werden. Dies erhöht die Authentizität deutlich.<sup>[6]</sup></p>
 
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
+        <h3>Technische Angriffe</h3>
+        <h4>Cross-Site-Scripting (XSS)</h4>
+        <p>Beim Cross-Site-Scripting wird "[...] Code aus einem wenig vertrauenswürdingen Kontext in einen
+            vertrauenswürdigen Kontext übertragen [...]" (Krebschull, 2023, S. 73). Dabei handelt es sich meist um
+            JavaScript-Code, der in Eingabefeldern eingegeben, vom Server gespeichert und beim Aufruf der Webseite auf
+            den Clientrechner anderer Nutzer übertragen wird. Wird die Nutzereingabe nicht richtig behandelt kann es zur
+            Ausführung des JavaScript-Codes auf den Clientrechnern anderer Nutzer kommen. Dadurch lassen sich Cookies
+            auslesen oder modifizieren, Webseiteninhalte modifizieren oder Phishingangriffe realisieren.<sup>[3]</sup>
+        </p>
 
-Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
+        <h4>SQL-Injection</h4>
+        <p>Bei SQL-Injections wird in Benutzereingaben SQL-Code eingeschleust, um die Datenbankabfrage, welche die
+            Benutzereingabe verwendet zu verändern oder eigene Befehle auszuführen. Dies ist dann möglich, wenn die die
+            Datenbankabfrage als Konkatenation von String-Variablen implementiert ist und die Benutzereingabe ohne
+            Überprüfung eingefügt wird.</p>
+        <p>Um in diesem Fall SQL-Code einzuschleusen, muss zunächst die Benutzereingabe bei zum Beispiel einem String
+            mit `'` geschlossen werden. Anschließend kann der Befehl durch zum Beispiel zusätzliche Bedingungen
+            erweitert werden oder mit `;` abgeschlossen werden und ein weiterer Befehl angehangen werden. Zum Schluss
+            muss mit dem Kommentarsymbol `--` die nachfolgenden Zeichen ignoriert werden, um einen validen SQL-Befehl zu
+            konstruieren.</p>
+        <p>Dadurch können Angreifer nicht nur `SELECT`-Abfragen verändern oder mit `SELECT`, `UPDATE` und `DELETE` Daten
+            verändern und löschen, sondern im schlimmsten Fall auch neue Benutzer anlegen und Passwörter
+            ändern.<sup>[3]</sup></p>
 
-Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+        <h4>Schadsoftware</h4>
+        <p>"Schadsoftware ist ein Oberbegriff für sämtliche Software, die (aus Sicht des Anwenders) unerwünschte
+            Aktionen ausführt, und damit dem Anwender bzw seinen Informationen oder seinem System schadet" (Beißel,
+            2019, S. 30). Schadsoftware kann dabei zunächst nach Art der Verbreitung unterschieden werden:</p>
+        <ul>
+            <li><b>Viren:</b> Schadsoftware, die erst bei Ausführung aktiv wird</li>
+            <li><b>Würmer:</b> Schadsoftware, die selbstständig aktiv wird und sich auch selbstständig verbreitet</li>
+            <li><b>Trojaner:</b> Schadsoftware, die in scheinbar unschädlichen Programmen versteckt werden</li>
+        </ul>
+        <p>Zudem kann man Schadsoftware nach ihrem Zweck unterteilen:</p>
+        <ul>
+            <li><b>Ransomeware:</b> Schadsoftware, die Dateien verschlüsselt und für deren Freigabe ein Lösegeld
+                verlangt wird</li>
+            <li><b>Spyware:</b> Schadsoftware, die das Nutzerverhalten aufzeichnet</li>
+            <li><b>Grayware:</b> Schadsoftware, die unnötige Rechenleistung beansprucht</li>
+        </ul>
+        <sup>[6]</sup>
 
+        <h4>Denial-of-Service-Attacken</h4>
+        <p>Denial-of-Service-Attacken (DoS) greifen die Verfügbarkeit eines Systems an und versuchen einen Dienst zu
+            überlasten und damit die Funktionsfähigkeit eines Dienstes einzuschränken. DoS-Attacken werden für
+            Erpressung verwendet, können aber auch politisch oder aktivistisch motiviert sein.</p>
+        <p>Bei einer DoS-Attacke wird der angegriffene Webserver mit vielen Anfragen zum Überlaufen gebracht, sodass
+            normale Anfragen nur noch sehr langsam oder gar nicht mehr verarbeitet werden können.
+            Werden diese Anfragen von mehreren Geräten gleichzeitig gesendet, wird dies als
+            Distributed-Denial-of-Service-Attacke (DDoS) bezeichnet.<sup>[3]</sup></p>
 
+        <details>
+            <summary>Quellen</summary>
+            <ol class="bibliography">
+                <li class="bib-element" id="bib-element-1">
+                    Erickson, J. (2008).<br>
+                    <span class="italic">Hacking: The Art of Exploitation</span> (2. Aufl.). No Starch Press.
+                </li>
+                <li class="bib-element" id="bib-element-2">
+                    Conrad, S. (2016).<br>
+                    <span class="italic">Sind alle Hacker Kriminelle?</span>. Emsisoft.<br>
+                    Abgerufen am 04.03.2025 von
+                    <a class="bib-link"
+                        href="https://www.emsisoft.com/de/blog/23442/sind-alle-hacker-kriminelle/">https://www.emsisoft.com/de/blog/23442/sind-alle-hacker-kriminelle/</a>
+                </li>
+                <li class="bib-element" id="bib-element-3">
+                    Krebschull, U. (2023).<br>
+                    <span class="italic">Computer Hacking: Eine Einführung zur Verbesserung der Computersicherheit in
+                        komplexen IT-Infrastrukturen</span>. Springer.<br>
+                    <a href="https://doi.org/10.1007/978-3-662-67030-9"
+                        class="bib-link">https://doi.org/10.1007/978-3-662-67030-9</a>
+                </li>
+                <li class="bib-element" id="bib-element-4">
+                    <span class="italic">Leitfaden zur Reaktion auf IT-Sicherheitsvorfälle für Vorfall-Praktiker und
+                        Vorfall-Experten</span>. (2022). Bundesamt für Sicherheit in der Informationstechnik.<br>
+                    Abgerufen am 04.03.2025 von <a
+                        href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/CSN/Leitfaden_VP_VE.pdf?__blob=publicationFile&v=21"
+                        class="bib-link">https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/CSN/Leitfaden_VP_VE.pdf?__blob=publicationFile&v=21</a>
+                </li>
+                <li class="bib-element" id="bib-element-5">
+                    Neumann, L. (2019).<br>
+                    <span class="italic">Wie Hacker hacken (und möglichst nicht mich)</span>. TINCON.<br>
+                    Abgerufen am 04.03.2025 von <a
+                        href="https://tincon.org/event/berlin19/wie-hacker-hacken-und-mich-moeglichst-nicht"
+                        class="bib-link">https://tincon.org/event/berlin19/wie-hacker-hacken-und-mich-moeglichst-nicht</a>
+                </li>
+                <li class="bib-element" id="bib-element-6">
+                    Beißel, S. (2019).<br>
+                    <span class="italic">Security Awareness: Grundlagen, Maßnahmen und Programme für die
+                        Informationssicherheit</span>. De Gruyter Oldenbourg.<br>
+                    <a href="https://doi.org/10.1515/9783110668261"
+                        class="bib-link">https://doi.org/10.1515/9783110668261</a>
+                </li>
+                <li class="bib-element" id="bib-element-7">
+                    Kumar, S. & Agarwal, D. (2018).<br>
+                    <span class="italic">Hacking Attacks, Methods, Techniques And Their Protection Measures.
+                        International Journal of Advance Research in Computer Science and Management</span>.<br>
+                    Abgerufen am 04.03.2025 von <a href="https://www.researchgate.net/profile/Sunil-Kumar-310/publication/324860675_Hacking_Attacks_Methods_Techniques_And_Their_Protection_Measures/links/5ae7ea5ca6fdcc03cd8dbf8f/Hacking-Attacks-Methods-Techniques-And-Their-Protection-Measures.pdf
+                    " class="bib-link">https://www.researchgate.net/profile/Sunil-Kumar-310/publication/324860675_Hacking_Attacks_Methods_Techniques_And_Their_Protection_Measures/links/5ae7ea5ca6fdcc03cd8dbf8f/Hacking-Attacks-Methods-Techniques-And-Their-Protection-Measures.pdf
+                    </a>
+                </li>
+            </ol>
+        </details>
     </div>
 </body>
+
 </html>
