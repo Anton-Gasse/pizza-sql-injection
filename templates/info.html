@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacking Information</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/default.min.css') }}">
     <style>
         body {
             font: 1em/1.6 sans-serif;
@@ -195,19 +192,18 @@
             SQL-Befehl zu
             konstruieren.</p>
         <pre><code class="language-sql">
-            -- Diese Anfrage gibt alle Elemente mit einem bestimmten Namen zurück<br>
-            SELECT * FROM table WHERE name = '&lt;input&gt;';<br>
+            -- Diese Anfrage gibt alle Elemente mit einem bestimmten Namen zurück
+            SELECT * FROM table WHERE name = '&lt;input&gt;';
 
             -- Durch Eingabe von "'; DROP TABLE table; --" kann die Tabelle gelöscht werden
             SELECT * FROM table WHERE id = ''; DROP TABLE table; --';
         </code></pre>
         <p>Dadurch können Angreifer nicht nur <code class="inline">SELECT</code>-Abfragen verändern oder mit <code
                 class="inline">SELECT</code>, <code class="inline">UPDATE</code> und <code class="inline">DELETE</code>
-            Daten
-            verändern und löschen, sondern im schlimmsten Fall auch neue Benutzer anlegen und Passwörter
+            Daten verändern und löschen, sondern im schlimmsten Fall auch neue Benutzer anlegen und Passwörter
             ändern.<sup>[3]</sup></p>
 
-        <h4>Schadsoftware</h4>
+        <h4>Malware</h4>
         <p>"Schadsoftware ist ein Oberbegriff für sämtliche Software, die (aus Sicht des Anwenders) unerwünschte
             Aktionen ausführt, und damit dem Anwender bzw seinen Informationen oder seinem System schadet" (Beißel,
             2019, S. 30). Schadsoftware kann dabei zunächst nach Art der Verbreitung unterschieden werden:</p>
@@ -287,6 +283,7 @@
             </ol>
         </details>
     </div>
+    <script>hljs.highlightAll();</script>
 </body>
 
 </html>
