@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacking Information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <style>
         body {
             font: 1em/1.6 sans-serif;
@@ -28,6 +32,12 @@
             margin-left: auto;
             margin-right: auto;
             text-align: left;
+        }
+
+        code.inline {
+            background-color: lightgray;
+            padding: 3px;
+            border-radius: 5px;
         }
 
         .source-quote {
@@ -174,11 +184,26 @@
             Datenbankabfrage als Konkatenation von String-Variablen implementiert ist und die Benutzereingabe ohne
             Überprüfung eingefügt wird.</p>
         <p>Um in diesem Fall SQL-Code einzuschleusen, muss zunächst die Benutzereingabe bei zum Beispiel einem String
-            mit `'` geschlossen werden. Anschließend kann der Befehl durch zum Beispiel zusätzliche Bedingungen
-            erweitert werden oder mit `;` abgeschlossen werden und ein weiterer Befehl angehangen werden. Zum Schluss
-            muss mit dem Kommentarsymbol `--` die nachfolgenden Zeichen ignoriert werden, um einen validen SQL-Befehl zu
+            mit <code class="inline">'</code> geschlossen werden. Anschließend kann der Befehl durch zum Beispiel
+            zusätzliche
+            Bedingungen
+            erweitert werden oder mit <code class="inline">;</code> abgeschlossen werden und ein weiterer Befehl
+            angehangen werden. Zum
+            Schluss
+            muss mit dem Kommentarsymbol <code class="inline">--</code> die nachfolgenden Zeichen ignoriert werden, um
+            einen validen
+            SQL-Befehl zu
             konstruieren.</p>
-        <p>Dadurch können Angreifer nicht nur `SELECT`-Abfragen verändern oder mit `SELECT`, `UPDATE` und `DELETE` Daten
+        <pre><code class="language-sql">
+            -- Diese Anfrage gibt alle Elemente mit einem bestimmten Namen zurück<br>
+            SELECT * FROM table WHERE name = '&lt;input&gt;';<br>
+
+            -- Durch Eingabe von "'; DROP TABLE table; --" kann die Tabelle gelöscht werden
+            SELECT * FROM table WHERE id = ''; DROP TABLE table; --';
+        </code></pre>
+        <p>Dadurch können Angreifer nicht nur <code class="inline">SELECT</code>-Abfragen verändern oder mit <code
+                class="inline">SELECT</code>, <code class="inline">UPDATE</code> und <code class="inline">DELETE</code>
+            Daten
             verändern und löschen, sondern im schlimmsten Fall auch neue Benutzer anlegen und Passwörter
             ändern.<sup>[3]</sup></p>
 
