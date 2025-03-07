@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Hacking Knowledge Quiz</h1>
+    <h1>Quiz</h1>
     <div id="question-container"></div>
     <div id="result" class="result"></div>
 </div>
@@ -8,7 +8,7 @@
     body {
         font-family: Arial, sans-serif;
         background-color: #f7f7f7;
-        text-align: center;
+        /*text-align: center;*/
     }
     .container {
         max-width: 600px;
@@ -20,13 +20,17 @@
     }
     .form-group {
         margin-bottom: 15px;
+        text-align: left;
     }
-    label {
-        font-weight: bold;
+    .quiz-option {
+        padding-left: 15px;
+    }
+    .quiz-option+.quiz-option {
+        padding-top: 10px;
     }
     .button-group {
-        text-align: center;
-        margin-top: 20px;
+        text-align: right;
+        margin-top: 35px;
     }
     .next-button, .redo-button {
         padding: 10px 20px;

@@ -2,7 +2,8 @@ let currentQuestion = 0;
 let score = 0;
 const questions = [
     {
-        question: "1. What does the term 'phishing' refer to in hacking?",
+        number: 1,
+        question: "What does the term 'phishing' refer to in hacking?",
         options: [
             "Pretending to be someone else online to steal information",
             "Using malware to encrypt files",
@@ -12,7 +13,8 @@ const questions = [
         correct: 0
     },
     {
-        question: "2. What is a DDoS attack?",
+        number: 2,
+        question: "What is a DDoS attack?",
         options: [
             "Distributing malicious emails",
             "Flooding a server with traffic to make it unavailable",
@@ -22,7 +24,8 @@ const questions = [
         correct: 1
     },
     {
-        question: "3. What is 'social engineering' in hacking?",
+        number: 3,
+        question: "What is 'social engineering' in hacking?",
         options: [
             "Cracking encryption algorithms",
             "Exploiting a software vulnerability",
@@ -32,7 +35,8 @@ const questions = [
         correct: 2
     },
     {
-        question: "4. Which of the following is a common form of malware?",
+        number: 4,
+        question: "Which of the following is a common form of malware?",
         options: [
             "Virus",
             "Rootkit",
@@ -42,7 +46,8 @@ const questions = [
         correct: 3
     },
     {
-        question: "5. What is the primary goal of ethical hacking?",
+        number: 5,
+        question: "What is the primary goal of ethical hacking?",
         options: [
             "To find and fix vulnerabilities",
             "To steal sensitive information",
@@ -58,9 +63,9 @@ function showQuestion() {
     const questionContainer = document.getElementById('question-container');
     questionContainer.innerHTML = `
             <div class="form-group">
-                <label>${question.question}</label>
+                <h3>Frage ${question.number}: ${question.question}</h3>
                 ${question.options.map((option, index) => `
-                    <div>
+                    <div class="quiz-option">
                         <input type="radio" id="q${currentQuestion}a${index}" name="q${currentQuestion}" value="${index}">
                         <label for="q${currentQuestion}a${index}">${option}</label>
                     </div>
@@ -75,6 +80,7 @@ function showQuestion() {
 function nextQuestion() {
     const selectedAnswer = document.querySelector(`input[name="q${currentQuestion}"]:checked`);
     const resultContainer = document.getElementById('result');
+    const questionContainer = document.getElementById('question-container');
 
     if (selectedAnswer) {
         const answerIndex = parseInt(selectedAnswer.value);
@@ -98,24 +104,22 @@ function nextQuestion() {
             }, 1000);
         } else {
             setTimeout(() => {
-                resultContainer.innerHTML = `Quiz Completed! Your score is ${score} out of ${questions.length}.`;
-                resultContainer.style.color = "blue";
-                showRedoButton();
+                resultContainer.innerHTML = '';
+                questionContainer.innerHTML = `
+                    <div class="form-group">
+                        <h3>Quiz abgeschlossen</h3>
+                        <p>Du hast ${score} von ${questions.length} Fragen richtig beantwortet.</p>
+                    </div>
+                    <div class="button-group">
+                        <button class="redo-button" onclick="redoQuiz()">Quiz wiederholen</button>
+                    </div>
+                `;
             }, 1000);
         }
     } else {
         resultContainer.innerHTML = "Please select an answer.";
         resultContainer.style.color = "orange";
     }
-}
-
-function showRedoButton() {
-    const questionContainer = document.getElementById('question-container');
-    questionContainer.innerHTML = `
-            <div class="button-group">
-                <button class="redo-button" onclick="redoQuiz()">Redo Quiz</button>
-            </div>
-        `;
 }
 
 function redoQuiz() {
