@@ -58,23 +58,20 @@ const questions = [
     }
 ];
 
-function showQuestion() {
-    const question = questions[currentQuestion];
+/**
+ * Shows current question or score.
+ */
+function showCurrentStep() {
+    // TODO: define the elements globally to avoid definition in multiple methods
     const questionContainer = document.getElementById('question-container');
-    questionContainer.innerHTML = `
-            <div class="form-group">
-                <h3>Frage ${question.number}: ${question.question}</h3>
-                ${question.options.map((option, index) => `
-                    <div class="quiz-option">
-                        <input type="radio" id="q${currentQuestion}a${index}" name="q${currentQuestion}" value="${index}">
-                        <label for="q${currentQuestion}a${index}">${option}</label>
-                    </div>
-                `).join('')}
-            </div>
-            <div class="button-group">
-                <button class="next-button" onclick="nextQuestion()">Next</button>
-            </div>
-        `;
+    const resultContainer = document.getElementById('result');
+
+    // show question or score depending on current question
+    if (currentQuestion >= questions.length) {
+        showScore(questionContainer, resultContainer);
+    } else {
+        showQuestion(questionContainer);
+    }
 }
 
 function nextQuestion() {
@@ -100,7 +97,7 @@ function nextQuestion() {
         if (currentQuestion < questions.length) {
             setTimeout(() => {
                 resultContainer.innerHTML = '';
-                showQuestion();
+                showCurrentStep();
             }, 1000);
         } else {
             setTimeout(() => {
@@ -122,9 +119,49 @@ function nextQuestion() {
     }
 }
 
+/**
+ * Shows current question.
+ * @param {HTMLElement | null} questionContainer 
+ */
+function showQuestion(questionContainer) {
+    const question = questions[currentQuestion];
+    questionContainer.innerHTML = `
+        <div class="form-group">
+            <h3>Frage ${question.number}: ${question.question}</h3>
+            ${question.options.map((option, index) => `
+                <div class="quiz-option">
+                    <input type="radio" id="q${currentQuestion}a${index}" name="q${currentQuestion}" value="${index}">
+                    <label for="q${currentQuestion}a${index}">${option}</label>
+                </div>
+            `).join('')}
+        </div>
+        <div class="button-group">
+            <button class="next-button" onclick="nextQuestion()">Next</button>
+        </div>
+    `;
+}
+
+/**
+ * Shows current score.
+ * @param {HTMLElement | null} questionContainer 
+ * @param {HTMLElement | null} resultContainer 
+ */
+function showScore(questionContainer, resultContainer) {
+    resultContainer.innerHTML = '';
+    questionContainer.innerHTML = `
+        <div class="form-group">
+            <h3>Quiz abgeschlossen</h3>
+            <p>Du hast ${score} von ${questions.length} Fragen richtig beantwortet.</p>
+        </div>
+        <div class="button-group">
+            <button class="redo-button" onclick="redoQuiz()">Quiz wiederholen</button>
+        </div>
+    `;
+}
+
 function redoQuiz() {
     currentQuestion = 0;
     score = 0;
     document.getElementById('result').innerHTML = '';
-    showQuestion();
+    showCurrentStep();
 }
