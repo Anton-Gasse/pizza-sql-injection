@@ -74,49 +74,37 @@ function showCurrentStep() {
     }
 }
 
-function nextQuestion() {
+/**
+ * Shows next question or score if all questions were answered.
+ */
+function showNextStep() {
     const selectedAnswer = document.querySelector(`input[name="q${currentQuestion}"]:checked`);
     const resultContainer = document.getElementById('result');
-    const questionContainer = document.getElementById('question-container');
 
-    if (selectedAnswer) {
-        const answerIndex = parseInt(selectedAnswer.value);
-        const correctAnswer = questions[currentQuestion].correct;
-
-        if (answerIndex === correctAnswer) {
-            score++;
-            resultContainer.innerHTML = "Correct!";
-            resultContainer.style.color = "green";
-        } else {
-            resultContainer.innerHTML = "Incorrect!";
-            resultContainer.style.color = "red";
-        }
-
-        currentQuestion++;
-
-        if (currentQuestion < questions.length) {
-            setTimeout(() => {
-                resultContainer.innerHTML = '';
-                showCurrentStep();
-            }, 1000);
-        } else {
-            setTimeout(() => {
-                resultContainer.innerHTML = '';
-                questionContainer.innerHTML = `
-                    <div class="form-group">
-                        <h3>Quiz abgeschlossen</h3>
-                        <p>Du hast ${score} von ${questions.length} Fragen richtig beantwortet.</p>
-                    </div>
-                    <div class="button-group">
-                        <button class="redo-button" onclick="redoQuiz()">Quiz wiederholen</button>
-                    </div>
-                `;
-            }, 1000);
-        }
-    } else {
-        resultContainer.innerHTML = "Please select an answer.";
+    // show error when no answer is selected
+    if (!selectedAnswer) {
+        resultContainer.innerHTML = "Wähle bitte eine Antwort aus, um fortzufahren.";
         resultContainer.style.color = "orange";
     }
+
+    // handle answer
+    const answerIndex = parseInt(selectedAnswer.value);
+    const correctAnswer = questions[currentQuestion].correct;
+
+    if (answerIndex === correctAnswer) {
+        score++;
+        resultContainer.innerHTML = "Richtig!";
+        resultContainer.style.color = "green";
+    } else {
+        resultContainer.innerHTML = "Falsch!";
+        resultContainer.style.color = "red";
+    }
+
+    // show next question after short timeout to see result
+    currentQuestion++;
+    setTimeout(() => {
+        showCurrentStep();
+    }, 1000);
 }
 
 /**
@@ -136,7 +124,7 @@ function showQuestion(questionContainer) {
             `).join('')}
         </div>
         <div class="button-group">
-            <button class="next-button" onclick="nextQuestion()">Next</button>
+            <button class="next-button" onclick="showNextStep()">Next</button>
         </div>
     `;
 }
@@ -159,6 +147,9 @@ function showScore(questionContainer, resultContainer) {
     `;
 }
 
+/**
+ * Resets the score and restarts the quiz.
+ */
 function redoQuiz() {
     currentQuestion = 0;
     score = 0;
