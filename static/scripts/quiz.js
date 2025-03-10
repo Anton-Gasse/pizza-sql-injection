@@ -3,58 +3,89 @@ let score = 0;
 const questions = [
     {
         number: 1,
-        question: "What does the term 'phishing' refer to in hacking?",
+        question: "Worum handelt es sich bei White-Hat-Hackern?",
         options: [
-            "Pretending to be someone else online to steal information",
-            "Using malware to encrypt files",
-            "Cracking passwords",
-            "None of the above"
+            "Hacker, die legal hacken, um die Sicherheit von Systemen zu verbessern",
+            "Hacker, die im Auftrag von Staaten hacken",
+            "Hacker, die illegal zur eigenen Bereicherung hacken",
+            "Hacker, die zwar illegal, aber aus ethischen Gründen hacken"
         ],
         correct: 0
     },
     {
         number: 2,
-        question: "What is a DDoS attack?",
+        question: "Wie sieht die Reihenfolge eines typischen Angriffs aus?",
         options: [
-            "Distributing malicious emails",
-            "Flooding a server with traffic to make it unavailable",
-            "Hacking a user's computer",
-            "None of the above"
-        ],
-        correct: 1
-    },
-    {
-        number: 3,
-        question: "What is 'social engineering' in hacking?",
-        options: [
-            "Cracking encryption algorithms",
-            "Exploiting a software vulnerability",
-            "Manipulating people into giving away information",
-            "Using brute-force methods to break into accounts"
+            "Vulnerability -> Payload -> Exploit",
+            "Payload -> Exploit -> Vulnerability",
+            "Vulnerability -> Exploit -> Payload",
+            "Payload -> Vulnerability -> Exploit"
         ],
         correct: 2
     },
     {
-        number: 4,
-        question: "Which of the following is a common form of malware?",
+        number: 3,
+        question: "Welche Methode fällt unter physische Angriffe?",
         options: [
-            "Virus",
-            "Rootkit",
-            "Spyware",
-            "All of the above"
+            "Dumpster Jumping",
+            "Brute Force",
+            "DOS",
+            "Spear-Phishing"
+        ],
+        correct: 0
+    },
+    {
+        number: 4,
+        question: "Worum handelt es sich bei 'Social Engineering'?",
+        options: [
+            "Knacken von Verschlüsselungsalgorithmen",
+            "Ausnutzen Softwareschwachstellen",
+            "Ausnutzen schwacher Passwörter",
+            "Manipulation von Menschen, damit diese Informationen preisgeben"
         ],
         correct: 3
     },
     {
         number: 5,
-        question: "What is the primary goal of ethical hacking?",
+        question: "Welche Sprache wird beim Cross-Site-Scripting meistens verwendet",
         options: [
-            "To find and fix vulnerabilities",
-            "To steal sensitive information",
-            "To destroy computer systems",
-            "None of the above"
+            "Java",
+            "Javascript",
+            "SQL",
+            "Python"
+        ],
+        correct: 1
+    },
+    {
+        number: 6,
+        question: "Welcher der nachfolgenden Dinge ist mit einer SQL-Injection nicht möglich?",
+        options: [
+            "eine Datenbank löschen",
+            "Datensätze verändern",
+            "Cookies auslesen",
+            "neue Nutzer anlegen"
+        ],
+        correct: 2
+    },
+    {
+        number: 7,
+        question: "Was ist Ransomware?",
+        options: [
+            "Schadsoftware, die Dateien verschlüsselt und für deren Freigabe ein Lösegeld verlangt wird",
+            "Schadsoftware, die das Nutzerverhalten aufzeichnet",
+            "Schadsoftware, die unnötige Rechenleistung beansrpucht"
         ],
         correct: 0
+    },
+    {
+        number: 8,
+        question: "Eine DDOS-Attacke ist ein Angriff auf die ...",
+        options: [
+            "Vertraulichkeit",
+            "Integrität",
+            "Verfügbarkeit"
+        ],
+        correct: 2
     }
 ];
 
