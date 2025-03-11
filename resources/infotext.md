@@ -2,7 +2,7 @@
 "The essence of hacking is finding unintended or overlooked uses for the laws and properties of a given situation and then applying them in new and inventive ways to solve a problem - whatever it may be." (Erickson, 2008, S. 1)
 
 # Arten von Hackern
-1. Black-Hats/Cracker: Hacker, die ohne Erlaubnis für ihre eigene Bereicherung illegal Hacker. (Conrad, 2016)
+1. Black-Hats/Cracker: Hacker, die ohne Erlaubnis für ihre eigene Bereicherung illegal hacken. (Conrad, 2016)
 2. White-Hats: Hacker, die mit Erlaubnis hacken, um Schwachstellen zu finden und Angriffe abzuwehren bzw. die Sicherheit von Systemen zu verbessern. (Conrad, 2016; Krebschull, 2023)
 3. Grey-Hats: Hacker, die zwar ohne Erlaubnis aber aus ethischen Gründen hacken. (Conrad, 2016)
 4. Hacktivisten: Hacker, die aus politischer Motivation hacken, um Aufmerksamkeit zu erlangen. (Krebschull, 2023)
@@ -15,7 +15,7 @@ Angriffe lassen sich nach ihrem Zweck unterteilen:
 
 1. Angriffe auf die Vertraulichkeit: Erlangen von Zugang zu vertraulichen Informationen
 2. Angriffe auf die Integrität: Veränderung von Daten und Softwaresystemen
-3. Angriffe auf die Verfügbarkeit: "Störung des Betriebes von Informationssystemen [...]" (BSI, 2022, S 29)
+3. Angriffe auf die Verfügbarkeit: "Störung des Betriebes von Informationssystemen [...]" (BSI, 2022, S. 29)
 
 (BSI, 2022)
 
