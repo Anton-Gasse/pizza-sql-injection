@@ -47,7 +47,7 @@ const questions = [
     },
     {
         number: 5,
-        question: "Welche Sprache wird beim Cross-Site-Scripting meistens verwendet",
+        question: "Welche Sprache wird beim Cross-Site-Scripting meistens verwendet?",
         options: [
             "Java",
             "Javascript",
