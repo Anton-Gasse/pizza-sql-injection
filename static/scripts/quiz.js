@@ -97,6 +97,8 @@ function showCurrentStep() {
     const questionContainer = document.getElementById('question-container');
     const resultContainer = document.getElementById('result');
 
+    resultContainer.innerHTML = "";
+
     // show question or score depending on current question
     if (currentQuestion >= questions.length) {
         showScore(questionContainer, resultContainer);
@@ -136,6 +138,7 @@ function showNextStep() {
     setTimeout(() => {
         showCurrentStep();
     }, 1000);
+
 }
 
 /**
