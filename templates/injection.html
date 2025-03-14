@@ -97,7 +97,7 @@
             font-weight: bold;
         }
         .hint-section {
-            margin-top: 20px;
+            margin-top: 50px;
             text-align: left;
         }
 
@@ -136,7 +136,7 @@
 <body>
     <div class="container">
         <div class="task-description">
-            <p>Use your SQL injection skills to bypass the system and order a free pizza! Experiment with different inputs in the coupon field and see if you can manipulate the database to your advantage.</p>
+            <p>Versuche mit einer SQL-Injection das System zu umgehen und eine Gratispizza zu bestellen! <br> <br> Schaue im <a href="/scoreboard" target="_blank" rel="noopener noreferrer">[Scoreboard]</a>, wer es bereits geschafft hat.</p>
         </div>
         <h1>Your Pizza Order</h1>
 
@@ -192,11 +192,11 @@
 
                 <button class="hint-button" onclick="toggleHint('hint3')">🔹 Hint 3</button>
                 <div class="hint-content" id="hint3">
-                    Durch eine eigene SELECT-Abfrage kann die Tabelle, welche die Coupons enthält wird ausgegeben werden und der entsprechende Coupon anschließend verwendet werden
+                    Durch eine eigene SELECT-Abfrage kann die Coupon Tabelle, welche die Coupons enthält wird ausgegeben werden und der entsprechende Coupon anschließend verwendet werden
                 </div>
 
-                <button class="hint-button" onclick="toggleHint('hint4')">🔹 Hint 4 (solution)</button>
-                <div class="hint-content" id="hint4">
+                <button class="hint-button" onclick="toggleHint('solution')">🔹 Solution</button>
+                <div class="hint-content" id="solution">
                     Versuch folgende SQL-Injection: '; select * from coupon; --
                 </div>
 
