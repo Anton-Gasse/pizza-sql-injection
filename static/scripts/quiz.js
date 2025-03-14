@@ -73,7 +73,7 @@ const questions = [
         options: [
             "Schadsoftware, die Dateien verschlüsselt und für deren Freigabe ein Lösegeld verlangt wird",
             "Schadsoftware, die das Nutzerverhalten aufzeichnet",
-            "Schadsoftware, die unnötige Rechenleistung beansrpucht"
+            "Schadsoftware, die unnötige Ressourcen beansprucht"
         ],
         correct: 0
     },
