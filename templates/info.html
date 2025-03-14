@@ -81,6 +81,18 @@
             font-style: italic;
         }
 
+        .code-outer {
+            background-color: #f3f3f3;
+            font-size: 0.9em;
+        }
+
+        .code-inner {
+            display: block;
+            padding: 2em;
+            padding-left: 6em;
+            overflow-x: auto;
+        }
+
         .bib-link,
         a.bib-link:link,
         a.bib-link:visited,
@@ -180,7 +192,8 @@
             Benutzereingabe verwendet zu verändern oder eigene Befehle auszuführen. Dies ist dann möglich, wenn die
             Datenbankabfrage als Konkatenation von String-Variablen implementiert ist und die Benutzereingabe ohne
             Überprüfung eingefügt wird.</p>
-        <p>Um in diesem Fall SQL-Code einzuschleusen, muss man zunächst die Benutzereingabe bei zum Beispiel einem String
+        <p>Um in diesem Fall SQL-Code einzuschleusen, muss man zunächst die Benutzereingabe bei zum Beispiel einem
+            String
             mit <code class="inline">'</code> schließen. Anschließend kann der Befehl durch zum Beispiel
             zusätzliche
             Bedingungen
@@ -191,13 +204,27 @@
             einen validen
             SQL-Befehl zu
             konstruieren.</p>
-        <pre><code class="language-sql">
-            -- Diese Anfrage gibt alle Elemente mit einem bestimmten Namen zurück
-            SELECT * FROM table WHERE name = '&lt;input&gt;';
-
-            -- Durch Eingabe von "'; DROP TABLE table; --" kann die Tabelle gelöscht werden
-            SELECT * FROM table WHERE name = ''; DROP TABLE table; --';
-        </code></pre>
+        <div class="code-outer">
+            <div class="code-inner">
+                <span style="color: #697070;">-- Diese Anfrage gibt alle Elemente mit einem bestimmten Namen
+                    zurück</span><br>
+                <span style="color: #444; font-weight: 700;">SELECT &nbsp; </span><span style="color: orangered">*</span>
+                <span style="color: #444; font-weight: 700;"> &nbsp; FROM &nbsp; </span><span>table</span>
+                <span style="color: #444; font-weight: 700;"> &nbsp; WHERE &nbsp; </span><span>name</span>
+                <span style="color: orangered; font-weight: 700;">&nbsp; = &nbsp; '</span><span style="color: green">&lt;input&gt;</span>
+                <span style="color: orangered; font-weight: 700;">'</span><span style="color: #444; font-weight: 700;">;</span>
+                <br><br>
+                <span style="color: #697070">-- Durch Eingabe von </span><span style="color: green;">'; DROP TABLE table; --</span>
+                <span style="color: #697070"> kann die Tabelle gelöscht werden</span><br>
+                <span style="color: #444; font-weight: 700;">SELECT &nbsp; </span><span style="color: orangered">*</span>
+                <span style="color: #444; font-weight: 700;"> &nbsp; FROM &nbsp; </span><span>table</span>
+                <span style="color: #444; font-weight: 700;"> &nbsp; WHERE &nbsp; </span><span>name</span>
+                <span style="color: orangered; font-weight: 700;">&nbsp; = &nbsp; '</span>
+                <span style="color: green; font-weight: 700;">'</span>
+                <span style="color: green;">; DROP TABLE table; --</span>
+                <span style="color: orangered; font-weight: 700;">'</span><span style="color: #444; font-weight: 700;">;</span>
+            </div>
+        </div>
         <p>Dadurch können Angreifer nicht nur <code class="inline">SELECT</code>-Abfragen verändern oder mit <code
                 class="inline">SELECT</code>, <code class="inline">UPDATE</code> und <code class="inline">DELETE</code>
             Daten verändern und löschen, sondern im schlimmsten Fall auch neue Benutzer anlegen und Passwörter
@@ -218,7 +245,8 @@
             <li><b>Ransomeware:</b> Schadsoftware, die Dateien verschlüsselt und für deren Freigabe ein Lösegeld
                 verlangt wird</li>
             <li><b>Spyware:</b> Schadsoftware, die das Nutzerverhalten (z. B. Tastatureingabe) aufzeichnet</li>
-            <li><b>Grayware:</b> Schadsoftware, die unnötige Ressourcen beansprucht (z. B. extern ungewollt eingefügte Werbung)</li>
+            <li><b>Grayware:</b> Schadsoftware, die unnötige Ressourcen beansprucht (z. B. extern ungewollt eingefügte
+                Werbung)</li>
         </ul>
 
         <h4>Denial-of-Service-Attacken</h4>
@@ -282,7 +310,6 @@
                 </li>
             </ol>
         </details>
-    <script>hljs.highlightAll();</script>
     </div>
 </body>
 
