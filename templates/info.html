@@ -109,7 +109,7 @@
 
         <h2>Arten von Hackern</h2>
         <ol>
-            <li><b>Black-Hats/Cracker:</b> Hacker, die ohne Erlaubnis für ihre eigene Bereicherung illgal hacken.
+            <li><b>Black-Hats/Cracker:</b> Hacker, die ohne Erlaubnis für ihre eigene Bereicherung illegal hacken.
                 <sup>[2]</sup>
             </li>
             <li><b>White-Hats:</b> Hacker, die mit Erlaubnis hacken, um Schwachstellen zu finden und Angriffe abzuwehren
@@ -142,6 +142,7 @@
             <li><b>Vulnerability:</b> Finden einer Schwachstelle in Softwaresystemen oder einer Organisation</li>
             <li><b>Exploit:</b> Ausnutzen der gefundenen Schwachstelle</li>
             <li><b>Payload:</b> Ausführen von Schadprogrammen oder Zugriff und Download von Daten</li>
+            <li><b>Infection (optional):</b> Einbauen einer Hintertür für dauerhaften Zugriff</li>
         </ol>
 
         <h2>Angriffsmethoden</h2>
@@ -176,17 +177,17 @@
 
         <h4>SQL-Injection</h4>
         <p>Bei SQL-Injections wird in Benutzereingaben SQL-Code eingeschleust, um die Datenbankabfrage, welche die
-            Benutzereingabe verwendet zu verändern oder eigene Befehle auszuführen. Dies ist dann möglich, wenn die die
+            Benutzereingabe verwendet zu verändern oder eigene Befehle auszuführen. Dies ist dann möglich, wenn die
             Datenbankabfrage als Konkatenation von String-Variablen implementiert ist und die Benutzereingabe ohne
             Überprüfung eingefügt wird.</p>
-        <p>Um in diesem Fall SQL-Code einzuschleusen, muss zunächst die Benutzereingabe bei zum Beispiel einem String
-            mit <code class="inline">'</code> geschlossen werden. Anschließend kann der Befehl durch zum Beispiel
+        <p>Um in diesem Fall SQL-Code einzuschleusen, muss man zunächst die Benutzereingabe bei zum Beispiel einem String
+            mit <code class="inline">'</code> schließen. Anschließend kann der Befehl durch zum Beispiel
             zusätzliche
             Bedingungen
-            erweitert werden oder mit <code class="inline">;</code> abgeschlossen werden und ein weiterer Befehl
+            erweitert oder mit <code class="inline">;</code> abgeschlossen und ein weiterer Befehl
             angehangen werden. Zum
             Schluss
-            muss mit dem Kommentarsymbol <code class="inline">--</code> die nachfolgenden Zeichen ignoriert werden, um
+            muss man mit dem Kommentarsymbol <code class="inline">--</code> die nachfolgenden Zeichen ignorieren, um
             einen validen
             SQL-Befehl zu
             konstruieren.</p>
@@ -195,7 +196,7 @@
             SELECT * FROM table WHERE name = '&lt;input&gt;';
 
             -- Durch Eingabe von "'; DROP TABLE table; --" kann die Tabelle gelöscht werden
-            SELECT * FROM table WHERE id = ''; DROP TABLE table; --';
+            SELECT * FROM table WHERE name = ''; DROP TABLE table; --';
         </code></pre>
         <p>Dadurch können Angreifer nicht nur <code class="inline">SELECT</code>-Abfragen verändern oder mit <code
                 class="inline">SELECT</code>, <code class="inline">UPDATE</code> und <code class="inline">DELETE</code>
@@ -210,14 +211,14 @@
         <ul>
             <li><b>Viren:</b> Schadsoftware, die erst bei Ausführung aktiv wird</li>
             <li><b>Würmer:</b> Schadsoftware, die selbstständig aktiv wird und sich auch selbstständig verbreitet</li>
-            <li><b>Trojaner:</b> Schadsoftware, die in scheinbar unschädlichen Programmen versteckt werden</li>
+            <li><b>Trojaner:</b> Schadsoftware, die in scheinbar unschädlichen Programmen versteckt wird</li>
         </ul>
         <p>Zudem kann man Schadsoftware nach ihrem Zweck unterteilen<sup>[6]</sup>:</p>
         <ul>
             <li><b>Ransomeware:</b> Schadsoftware, die Dateien verschlüsselt und für deren Freigabe ein Lösegeld
                 verlangt wird</li>
-            <li><b>Spyware:</b> Schadsoftware, die das Nutzerverhalten (z.B. Tastatureingabe) aufzeichnet</li>
-            <li><b>Grayware:</b> Schadsoftware, die unnötige Ressourcen beansprucht (z.B. Zeigen von Werbung)</li>
+            <li><b>Spyware:</b> Schadsoftware, die das Nutzerverhalten (z. B. Tastatureingabe) aufzeichnet</li>
+            <li><b>Grayware:</b> Schadsoftware, die unnötige Ressourcen beansprucht (z. B. extern ungewollt eingefügte Werbung)</li>
         </ul>
 
         <h4>Denial-of-Service-Attacken</h4>
