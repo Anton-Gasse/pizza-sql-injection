@@ -2,7 +2,7 @@
 
 ## 📜 About
 
-This project is a fun and educational web application designed to help you understand and practice SQL Injection vulnerabilities. The frontend simulates a simple pizza ordering page, but hidden in the database is a coupon code for a 100% discount. The goal of this challenge is to exploit a SQL injection vulnerability to extract the hidden coupon code and get your pizza order for free!
+This project is a fun and educational web application designed to help you understand and practice SQL Injection vulnerabilities. The frontend simulates a simple pizza ordering page, but hidden in the database is a coupon code for a 100% discount. The goal of this challenge is to exploit a SQL injection vulnerability to extract the hidden coupon code and get your pizza order for free! Test it out: anton-gasse.de/pizza
 
 ##### ⚠️ Disclaimer: This project is for educational purposes only. Always ensure you have permission before attempting security testing, and never perform SQL injection or other attacks on systems without authorization.
 
