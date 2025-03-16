@@ -60,6 +60,7 @@
     </script>
 </head>
 <body>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/slideshow.js') }}" defer></script>
     <div class="tabs">
         <div class="tab active" data-page="info" onclick="loadPage('info')">Info</div>
         <div class="tab" data-page="quiz" onclick="loadPage('quiz')">Quiz</div>
@@ -70,6 +71,5 @@
 
     <script type="text/javascript" src="{{ url_for('static', filename='scripts/quiz.js') }}" defer></script>
     <script type="text/javascript" src="{{ url_for('static', filename='scripts/injection.js') }}" defer></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='scripts/slideshow.js') }}" defer></script>
 </body>
 </html>
