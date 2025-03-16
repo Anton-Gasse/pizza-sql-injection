@@ -106,6 +106,76 @@
             text-decoration: none;
             color: inherit;
         }
+
+        .slideshow {
+            width: 100%;
+            display: flex;
+        }
+
+        .prev-slide {
+            margin: auto;
+        }
+
+        .next-slide {
+            margin: auto;
+        }
+
+        .slide-description {
+            width: 60%;
+            margin: auto;
+            max-width: 600px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 150px;
+        }
+
+        .slideshow-container {
+            width: 60%;
+            margin: auto;
+            max-width: 600px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            position: absolute;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            text-align: center;
+        }
+
+        .slide img {
+            width: 100px;
+            height: 100px;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .slide p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .prev,
+        .next {
+            width: 10%;
+            height: 100%;
+            margin: auto;
+            padding: 20px;
+            color: black;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(90, 90, 90, 0.8);
+        }
     </style>
 </head>
 
@@ -120,22 +190,21 @@
         </blockquote>
 
         <h2>Arten von Hackern</h2>
-        <ol>
-            <li><b>Black-Hats/Cracker:</b> Hacker, die ohne Erlaubnis für ihre eigene Bereicherung illegal hacken.
-                <sup>[2]</sup>
-            </li>
-            <li><b>White-Hats:</b> Hacker, die mit Erlaubnis hacken, um Schwachstellen zu finden und Angriffe abzuwehren
-                bzw. die Sicherheit von Systemen zu verbessern. <sup>[2]</sup> <sup>[3]</sup></li>
-            <li><b>Grey-Hats:</b> Hacker, die zwar ohne Erlaubnis aber aus ethischen Gründen hacken. <sup>[2]</sup></li>
-            <li><b>Hacktivisten:</b> Hacker, die aus politischer Motivation hacken, um Aufmerksamkeit zu erlangen.
-                <sup>[3]</sup>
-            </li>
-            <li><b>State-sponsored Hacker:</b> Hacker, die im Auftrag von Staaten oder Regierungen hacken.
-                <sup>[3]</sup>
-            </li>
-            <li><b>Script-Kiddies:</b> Kriminelle, die nicht über die notwendigen Kenntnisse verfügen und lediglich die
-                Werkzeuge von qualifizierten Hackern benutzen. <sup>[3]</sup></li>
-        </ol>
+        <div class="slideshow">
+            <div class="prev-slide">
+                <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            </div>
+            <div class="slideshow-container" id="slideshow-container">
+                <div id="slides"></div>
+            </div>
+            <div class="next-slide">
+                <a class="next" onclick="changeSlide(1)">&#10095;</a>
+            </div>
+        </div>
+        <div class="slide-description" id="slideshow-description">
+            <h3 class="slide-name" id="slide-name"></h3>
+            <p class="slide-text"><span id="slide-text"></span> <sup id="slide-source"></sup></p>
+        </div>
 
         <h2>Angriffsformen</h2>
         <p>Angriffe lassen sich nach ihrem Zweck unterteilen<sup>[4]</sup>:</p>
@@ -208,21 +277,27 @@
             <div class="code-inner">
                 <span style="color: #697070;">-- Diese Anfrage gibt alle Elemente mit einem bestimmten Namen
                     zurück</span><br>
-                <span style="color: #444; font-weight: 700;">SELECT &nbsp; </span><span style="color: orangered">*</span>
+                <span style="color: #444; font-weight: 700;">SELECT &nbsp; </span><span
+                    style="color: orangered">*</span>
                 <span style="color: #444; font-weight: 700;"> &nbsp; FROM &nbsp; </span><span>table</span>
                 <span style="color: #444; font-weight: 700;"> &nbsp; WHERE &nbsp; </span><span>name</span>
-                <span style="color: orangered; font-weight: 700;">&nbsp; = &nbsp; '</span><span style="color: green">&lt;input&gt;</span>
-                <span style="color: orangered; font-weight: 700;">'</span><span style="color: #444; font-weight: 700;">;</span>
+                <span style="color: orangered; font-weight: 700;">&nbsp; = &nbsp; '</span><span
+                    style="color: green">&lt;input&gt;</span>
+                <span style="color: orangered; font-weight: 700;">'</span><span
+                    style="color: #444; font-weight: 700;">;</span>
                 <br><br>
-                <span style="color: #697070">-- Durch Eingabe von </span><span style="color: green;">'; DROP TABLE table; --</span>
+                <span style="color: #697070">-- Durch Eingabe von </span><span style="color: green;">'; DROP TABLE
+                    table; --</span>
                 <span style="color: #697070"> kann die Tabelle gelöscht werden</span><br>
-                <span style="color: #444; font-weight: 700;">SELECT &nbsp; </span><span style="color: orangered">*</span>
+                <span style="color: #444; font-weight: 700;">SELECT &nbsp; </span><span
+                    style="color: orangered">*</span>
                 <span style="color: #444; font-weight: 700;"> &nbsp; FROM &nbsp; </span><span>table</span>
                 <span style="color: #444; font-weight: 700;"> &nbsp; WHERE &nbsp; </span><span>name</span>
                 <span style="color: orangered; font-weight: 700;">&nbsp; = &nbsp; '</span>
                 <span style="color: green; font-weight: 700;">'</span>
                 <span style="color: green;">; DROP TABLE table; --</span>
-                <span style="color: orangered; font-weight: 700;">'</span><span style="color: #444; font-weight: 700;">;</span>
+                <span style="color: orangered; font-weight: 700;">'</span><span
+                    style="color: #444; font-weight: 700;">;</span>
             </div>
         </div>
         <p>Dadurch können Angreifer nicht nur <code class="inline">SELECT</code>-Abfragen verändern oder mit <code
@@ -311,6 +386,7 @@
             </ol>
         </details>
     </div>
+    <script>renderSlides();</script>
 </body>
 
 </html>
