@@ -27,10 +27,19 @@
             margin-bottom: 15px;
             margin-right: 15px;
         }
+        .task-description {
+            background: #ffefd5;
+            padding: 15px;
+            border-left: 5px solid #ff8c00;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            text-align: left;
+        }
         label {
             display: block;
             font-weight: bold;
             margin-bottom: 5px;
+            text-align: left;
         }
         .fixed-input {
             width: 100%;
@@ -87,87 +96,48 @@
             color: #007bff;
             font-weight: bold;
         }
+        .hint-section {
+            margin-top: 50px;
+            text-align: left;
+        }
+
+        .hint-button {
+            background: #007bff;
+            color: white;
+            padding: 8px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 14px;
+            transition: 0.3s;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .hint-button:hover {
+            background: #0056b3;
+        }
+
+        .hint-content {
+            display: none;
+            background: #eef6ff;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border-left: 4px solid #4f8aca;
+            font-size: 14px;
+            color: #333;
+        }
 
     </style>
-    <script>
-        let currentDiscount = [[0]];
-        let currenctCoupon = null;
 
-        function checkCoupon() {
-            const couponInput = document.getElementById('coupon').value;
-
-            if (couponInput) {
-                
-                fetch(`/check_coupon/${couponInput}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        
-                        const resultElement = document.getElementById('coupon-result');
-
-                        if (data.percent !== null) {
-                            currentDiscount = data.percent;
-
-                            resultElement.textContent = `Discount: ${data.percent}%`;
-                            currenctCoupon = couponInput;
-
-                        } else {
-                            currentDiscount = [[0]];
-                            currenctCoupon = null;
-                            resultElement.textContent = "Invalid coupon code.";
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error fetching coupon:', error);
-                    });
-            }
-        }
-
-        async function handleFormSubmit(event) {
-
-            event.preventDefault();
-
-            const nameInput = document.getElementById('name').value;
-
-            if (!currenctCoupon) {
-                alert("Try again, the discount is not 100%.");
-                return;
-            }
-
-            try {
-                const couponResponse = await fetch(`/check_coupon/${currenctCoupon}`);
-                const couponData = await couponResponse.json();
-
-                if (couponData.percent[0][0] !== 100) {
-                    alert("Try again, the discount is not 100%.");
-                    return;
-                }
-
-                // Only proceed if the coupon gives a 100% discount
-                const scoreboardResponse = await fetch('/scoreboard', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ name: nameInput , coupon: currenctCoupon}),
-                });
-
-                const scoreboardData = await scoreboardResponse.json();
-
-                if (scoreboardData.message) {
-                    alert("Success! Your order is free!");
-                } else {
-                    alert("Error updating the server.");
-                }
-            } catch (error) {
-                console.error('Error processing form:', error);
-                alert("An error occurred. Please try again later.");
-            }
-        }
-
-    </script>
 </head>
 <body>
     <div class="container">
+        <div class="task-description">
+            <p>Versuche mit einer SQL-Injection das System zu umgehen und eine Gratispizza zu bestellen! <br> <br> Schaue im <a href="/scoreboard" target="_blank" rel="noopener noreferrer">[Scoreboard]</a>, wer es bereits geschafft hat.</p>
+        </div>
         <h1>Your Pizza Order</h1>
 
         <form action="#" method="POST" onsubmit="handleFormSubmit(event)">
@@ -208,6 +178,42 @@
                 <input type="submit" value="Place Order" name="place_order">
             </div>
         </form>
+
+        <div class="hint-section">
+                <button class="hint-button" onclick="toggleHint('hint1')">🔹 Hint 1</button>
+                <div class="hint-content" id="hint1">
+                    Teste einmal die Funktionsweise der Seite mit einem ausgedachten Code, um zu verstehen was passiert und welche Angriffsmöglichkeiten es gibt.
+                </div>
+
+                <button class="hint-button" onclick="toggleHint('hint2')">🔹 Hint 2</button>
+                <div class="hint-content" id="hint2">
+                    Die Eingabe eines Coupons löst eine SELECT-Abfrage aus, dessen Ergebnis beim Einlösen dargestellt wird. Dadurch kann durch eine SQL-Injection eine eigene SELECT-Anfrage formuliert werden, dessen Ergebnis dann zu sehen ist.
+                </div>
+
+                <button class="hint-button" onclick="toggleHint('hint3')">🔹 Hint 3</button>
+                <div class="hint-content" id="hint3">
+                    Durch eine eigene SELECT-Abfrage kann die Coupon Tabelle, welche die Coupons enthält wird ausgegeben werden und der entsprechende Coupon anschließend verwendet werden
+                </div>
+
+                <button class="hint-button" onclick="toggleHint('solution')">🔹 Solution</button>
+                <div class="hint-content" id="solution">
+                    Versuch folgende SQL-Injection: '; select * from coupon; --
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            function toggleHint(hintId) {
+                var hint = document.getElementById(hintId);
+                
+                if (hint.style.display === "none" || hint.style.display === "") {
+                    hint.style.display = "block";
+                } else {
+                    hint.style.display = "none";
+                }
+            }
+        </script>
     </div>
 </body>
 </html>

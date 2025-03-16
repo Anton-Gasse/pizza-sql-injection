@@ -30,16 +30,7 @@
             background-color: #007bff;
             color: white;
         }
-        #content {
-            margin-top: 20px;
-            padding: 20px;
-            background: white;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+
     </style>
     <script>
         function loadPage(page) {
@@ -76,5 +67,9 @@
     </div>
     <div id="content"></div>
     <script>loadPage('info');</script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/quiz.js') }}" defer></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/injection.js') }}" defer></script>
+
 </body>
 </html>
